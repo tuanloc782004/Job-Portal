@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jobportal.DAO.UsersDAO;
 import com.jobportal.DAO.UsersDetailDAO;
 import com.jobportal.model.UsersDetail;
 
@@ -21,15 +20,6 @@ public class UsersDetailUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UsersDetailDAO userDetailDAO;
-	
-	public UsersDetailUpdateServlet() {
-		this.userDetailDAO = new UsersDetailDAO();
-	}
-
-	public void init() {
-		userDetailDAO = new UsersDetailDAO();
-	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

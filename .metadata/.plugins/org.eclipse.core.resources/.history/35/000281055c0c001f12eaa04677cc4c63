@@ -15,7 +15,7 @@ public class UsersDetailDAO {
 	private String jdbcPassword = "782004tuanloc";
 
 	private static final String INSERT_USERS_SQL = "INSERT INTO users_detail " + "(id_user, category,country,work_experience,education,professional_skills,img) VALUES "
-			+ "(?,?,?,?,?,?,?);";
+			+ "(?,?,?,?);";
 	private static final String SELECT_USER_BY_ID = "select id_user,category,country,work_experience,education,professional_skills,img from users_detail where id_user=?";
 	private static final String UPDATE_USERS_SQL = "update users_detail set category = ?, country = ?, work_experience = ?, education = ?,professional_skills=?,img = ?  where id_user = ?;";
 

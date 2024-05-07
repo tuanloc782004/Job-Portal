@@ -2,7 +2,6 @@ package com.jobportal.servlet.user;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jobportal.DAO.UsersDAO;
 import com.jobportal.DAO.UsersDetailDAO;
 import com.jobportal.model.Users;
 import com.jobportal.model.UsersDetail;
@@ -24,6 +22,14 @@ public class UsersDetailInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UsersDetailDAO userDetailDAO;
+	
+	public UsersDetailInsertServlet() {
+		this.userDetailDAO = new UsersDetailDAO();
+	}
+
+	public void init() {
+		userDetailDAO = new UsersDetailDAO();
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
