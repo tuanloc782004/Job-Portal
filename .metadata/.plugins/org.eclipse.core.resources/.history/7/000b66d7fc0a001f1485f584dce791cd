@@ -1,0 +1,5 @@
+package com.jobportal.servlet.recruiter;
+
+public class Home {
+
+}

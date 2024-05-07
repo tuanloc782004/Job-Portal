@@ -1,0 +1,156 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Job</title>
+<%@include file="/all-component/all-css.jsp"%>
+</head>
+<body style="background-color: #f0f1f2;">
+	<%@include file="/all-component/all-css.jsp"%>
+
+	<div class="container p-2">
+		<div class="col-md-10 offset-md-1">
+			<div class="card">
+				<div class="card-body">
+					<div class="text-center text-success">
+						<i class="fas fa-user-friends fa-3x"></i>
+						<!-- <c:if test="${not empty succMsg }">
+							<div class="alert alert-success">${ succMsg}</div>
+							<c:remove var="succMsg" />
+						</c:if> -->
+
+						<h5>Add Jobs</h5>
+					</div>
+					<form action="addJob" method="post">
+						<div class="form-group">
+							<label>Enter Title</label> <input type="text" name="title"
+								required class="from-control">
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Location</label> <select name="location"
+									class="custom-select" id="inlineFormCustomSelectPref">
+									<option>Choose..</option>
+
+									<option value="AnGiang">An Giang</option>
+									<option value="BaRia-Vung Tau">Ba Ria - Vung Tau</option>
+									<option value="BacGiang">Bac Giang</option>
+									<option value="BacKan">Bac Kan</option>
+									<option value="BacLieu">Bac Lieu</option>
+									<option value="BacNinh">Bac Ninh</option>
+									<option value="BenTre">Ben Tre</option>
+									<option value="BinhDinh">Binh Dinh</option>
+									<option value="BinhDuong">Binh Duong</option>
+									<option value="BinhPhuoc">Binh Phuoc</option>
+									<option value="BinhThuan">Binh Thuan</option>
+									<option value="CaMau">Ca Mau</option>
+									<option value="CanTho">Can Tho</option>
+									<option value="CaoBang">Cao Bang</option>
+									<option value="DaNang">Da Nang</option>
+									<option value="DakLak">Dak Lak</option>
+									<option value="DakNong">Dak Nong</option>
+									<option value="DienBien">Dien Bien</option>
+									<option value="DongNai">Dong Nai</option>
+									<option value="DongThap">Dong Thap</option>
+									<option value="GiaLai">Gia Lai</option>
+									<option value="HaGiang">Ha Giang</option>
+									<option value="HaNoi">Ha Noi</option>
+									<option value="HaTinh">Ha Tinh</option>
+									<option value="HaiDuong">Hai Duong</option>
+									<option value="HaiPhong">Hai Phong</option>
+									<option value="HauGiang">Hau Giang</option>
+									<option value="HoChiMinhCity">Ho Chi Minh City</option>
+									<option value="HauGiang">Hau Giang</option>
+									<option value="HoaBinh">Hoa Binh</option>
+									<option value="HungYen">Hung Yen</option>
+									<option value="KhanhHoa">Khanh Hoa</option>
+									<option value="KienGiang">Kien Giang</option>
+									<option value="KonTum">Kon Tum</option>
+									<option value="LaiChau">Lai Chau</option>
+									<option value="LamDong">Lam Dong</option>
+									<option value="LangSon">Lang Son</option>
+									<option value="LaoCai">Lao Cai</option>
+									<option value="LongAn">Long An</option>
+									<option value="NamDinh">Nam Dinh</option>
+									<option value="NgheAn">Nghe An</option>
+									<option value="NinhBinh">Ninh Binh</option>
+									<option value="NinhThuan">Ninh Thuan</option>
+									<option value="PhuTho">Phu Tho</option>
+									<option value="PhuYen">Phu Yen</option>
+									<option value="QuangBinh">Quang Binh</option>
+									<option value="QuangNam">Quang Nam</option>
+									<option value="QuangNgai">Quang Ngai</option>
+									<option value="QuangNinh">Quang Ninh</option>
+									<option value="QuangTri">Quang Tri</option>
+									<option value="SocTrang">Soc Trang</option>
+									<option value="SonLa">Son La</option>
+									<option value="Tay Ninh">Tay Ninh</option>
+									<option value="ThaiBinh">Thai Binh</option>
+									<option value="ThaiNguyen">Thai Nguyen</option>
+									<option value="ThanhHoa">Thanh Hoa</option>
+									<option value="ThuaThien-Hue">Thua Thien-Hue</option>
+									<option value="TienGiang">Tien Giang</option>
+									<option value="TraVinh">Tra Vinh</option>
+									<option value="TuyenQuang">Tuyen Quang</option>
+									<option value="VinhLong">Vinh Long</option>
+									<option value="VinhPhuc">Vinh Phuc</option>
+									<option value="YenBai">Yen Bai</option>
+								</select>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Category</label> <select class="custom-select"
+									id="inlineFormCustomSelectPref" name="category">
+									<option value="Developer">Developer</option>
+									<option value="Designer">Designer</option>
+									<option value="Engineer">Engineer</option>
+									<option value="Manager">Manager</option>
+									<option value="Analyst">Analyst</option>
+									<option value="Consultant">Consultant</option>
+									<option value="Marketing">Marketing</option>
+									<option value="Sales">Sales</option>
+									<option value="Customer Service">Customer Service</option>
+									<option value="Finance">Finance</option>
+									<option value="Human Resources">Human Resources</option>
+									<option value="Healthcare">Healthcare</option>
+									<option value="Education">Education</option>
+									<option value="Legal">Legal</option>
+									<option value="Hospitality">Hospitality</option>
+									<option value="Retail">Retail</option>
+									<option value="Manufacturing">Manufacturing</option>
+									<option value="Construction">Construction</option>
+									<option value="Transportation">Transportation</option>
+									<option value="Logistics">Logistics</option>
+									<option value="Supply Chain">Supply Chain</option>
+									<option value="Administration">Administration</option>
+									<option value="Information Technology">Information
+										Technology</option>
+									<option value="Data Science">Data Science</option>
+									<option value="Cybersecurity">Cybersecurity</option>
+									<option value="Network Administration">Network
+										Administration</option>
+									<option value="System Administration">System
+										Administration</option>
+									<option value="Cloud Computing">Cloud Computing</option>
+								</select>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Status</label> <select class="form-control" name="status">
+									<option class="Active" value="Active">Active</option>
+									<option class="Inactive" value="Inactive">Inactive</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Enter Description</label>
+							<textarea rows="6" cols="" name="desc" class="from-control"></textarea>
+						</div>
+						<button class="btn btn-success">Publish Job</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

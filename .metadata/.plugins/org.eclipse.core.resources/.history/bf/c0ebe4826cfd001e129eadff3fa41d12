@@ -1,0 +1,136 @@
+package com.jobportal.servlet;
+
+import java.util.List;
+import java.io.IOException;
+import java.net.HttpRetryException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.w3c.dom.UserDataHandler;
+
+import com.jobportal.DAO.UsersDAO;
+import com.jobportal.model.Users;
+
+@WebServlet(urlPatterns = { "/admin-user" })
+public class UsersServlet {
+
+	private UsersDAO usersDAO;
+
+	public UsersServlet() {
+		this.usersDAO = new UsersDAO();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		String action = request.getServletPath();
+		
+		switch(action) {
+		case "/admin-user/new":
+			try{
+				showNewForm(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "/admin-user/insert":
+			try{
+				insertUser(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "/admin-user/delete":
+			try{
+				deleteUser(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "/admin-user/edit":
+			try{
+				showEditForm(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "/admin-user/update":
+			try{
+				updateUser(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			try{
+				listUser(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		}
+	}
+	
+	private void listUser(HttpServletRequest request, HttpServletResponse response) 			
+			throws SQLException, IOException, ServletException {
+		List<Users> listUser = usersDAO.selectAllUsers();
+		request.setAttribute("listUser", listUser);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/user.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void updateUser(HttpServletRequest request, HttpServletResponse response) 			
+			throws SQLException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String uname = request.getParameter("uname");
+		String upwd = request.getParameter("upwd");
+		String uemail = request.getParameter("uemail");
+		String umobile = request.getParameter("umobile");
+		Users newUser = new Users(id, uname, upwd, uemail, umobile);
+		usersDAO.updateUser(newUser);
+		response.sendRedirect("/PBL3/admin-user");
+	}
+
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response) 			
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/userForm.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response) 			
+			throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Users existingUser = usersDAO.selectUser(id);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/userForm.jsp");
+		request.setAttribute("user", existingUser);
+		dispatcher.forward(request, response);
+	}
+	
+	private void insertUser(HttpServletRequest request, HttpServletResponse response) 			
+			throws IOException, SQLException {
+		String uname = request.getParameter("uname");
+		String upwd = request.getParameter("upwd");
+		String uemail = request.getParameter("uemail");
+		String umobile = request.getParameter("umobile");
+		Users newUser = new Users(uname, upwd, uemail, umobile);
+		usersDAO.insertUser(newUser);
+		response.sendRedirect("/PBL3/admin-user");
+	}
+	
+	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 			
+			throws IOException, SQLException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		usersDAO.deleteUser(id);
+		response.sendRedirect("/PBL3/admin-user");
+	}
+	
+}

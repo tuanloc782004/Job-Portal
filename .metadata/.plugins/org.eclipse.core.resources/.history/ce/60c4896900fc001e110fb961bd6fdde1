@@ -1,0 +1,5 @@
+package com.jobportal.database;
+
+public class DatabaseConnect {
+
+}

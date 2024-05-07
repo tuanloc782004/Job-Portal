@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Recruiter - Home</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+	<div class="main-body">
+		<div class="col-md-8">
+			<div class="card mb-3">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<h6 class="mb-0">ID</h6>
+						</div>
+						<div class="col-sm-9 text-secondary text-capitalize">
+							<p>
+								<c:out value="${sessionScope.recruiter.id}" />
+							</p>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-sm-3">
+							<h6 class="mb-0">Company Name</h6>
+						</div>
+						<div class="col-sm-9 text-secondary text-capitalize">
+							<p>
+								<c:out value="${sessionScope.recruiter.uname}" />
+							</p>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-sm-3">
+							<h6 class="mb-0">Email</h6>
+						</div>
+						<div class="col-sm-9 text-secondary text-capitalize">
+							<p>
+								<c:out value="${sessionScope.recruiter.uemail}" />
+							</p>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-sm-3">
+							<h6 class="mb-0">Password</h6>
+						</div>
+						<div class="col-sm-9 text-secondary text-capitalize">
+							<p>
+								<c:out value="${sessionScope.recruiter.upwd}" />
+							</p>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-sm-3">
+							<h6 class="mb-0">Mobile</h6>
+						</div>
+						<div class="col-sm-9 text-secondary text-capitalize">
+							<p>
+								<c:out value="${sessionScope.recruiter.umobile}" />
+							</p>
+						</div>
+					</div>
+					<hr />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

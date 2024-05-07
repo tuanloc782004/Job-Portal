@@ -1,0 +1,5 @@
+package com.jobportal.DAO;
+
+public class JobsDAO {
+
+}

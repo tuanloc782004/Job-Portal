@@ -1,0 +1,16 @@
+package com.jobportal.DAO;
+
+public class UsersDAO {
+
+	private String jdbcURL = "jdbc:mysql://localhost:3306/jobportal?useSSl=false";
+	private String jdbcUsername = "root";
+	private String jdbcPassword = "782004tuanloc";
+	
+	private static final String INSERT_USERS_SQL = 	"INSERT INTO users" + 
+													"(uname, upwd, uemail, umobile) VALUES" +
+													"(?,?,?,?)";
+	private static final String SELECT_USER_BY_ID = "select * from users where id=?";
+	private static final String SELECT_ALL_USERS = "select * from users";
+	private static final String DELETE_USERS_SQL = "delete form users where id = ?;";
+	private static final String UPDATE_USERS_SQL = "update users set uname = ?, email = ?, country = ? where id = ?;"
+}

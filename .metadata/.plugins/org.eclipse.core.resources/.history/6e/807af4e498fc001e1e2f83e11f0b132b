@@ -1,0 +1,54 @@
+package com.jobportal.DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.tools.Diagnostic;
+
+import com.jobportal.model.Users;
+
+public class UsersDAO {
+
+	private String jdbcURL = "jdbc:mysql://localhost:3306/jobportal?useSSl=false";
+	private String jdbcUsername = "root";
+	private String jdbcPassword = "782004tuanloc";
+	
+	private static final String INSERT_USERS_SQL = 	"INSERT INTO users" + 
+													"(uname, upwd, uemail, umobile) VALUES" +
+													"(?,?,?,?)";
+	private static final String SELECT_USER_BY_ID = "select * from users where id=?";
+	private static final String SELECT_ALL_USERS = "select * from users";
+	private static final String DELETE_USERS_SQL = "delete form users where id = ?;";
+	private static final String UPDATE_USERS_SQL = "update users set uname = ?, email = ?, country = ? where id = ?;";
+	
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+	
+	// create or insert user
+	public void insertUser(Users user) {
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)){
+			preparedStatement.setString(1, user.getUname());
+		}
+	}
+	
+	// update user
+	
+	// select user by id
+	
+	// select users
+	
+	// delete users
+}

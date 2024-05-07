@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin - View Jobs</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/styles.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/theme.css">
+<script
+	src="${pageContext.request.contextPath}/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/popper.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$(".siderbar_menu li").click(function() {
+			$(".siderbar_menu li").removeClass("active");
+			$(this).addClass("active");
+		});
+
+		$(".hamburger").click(function() {
+			$(".wrapper").addClass("active");
+		});
+
+		$(".close, .bg_shadow").click(function() {
+			$(".wrapper").removeClass("active");
+		});
+	});
+</script>
+
+<script>
+	$(function() {
+		// this will get the full URL at the address bar
+		var url = window.location.href;
+
+		// passes on every "a" tag 
+		$("#sub-header a").each(function() {
+			// checks if its the same on the address bara
+			if (url == (this.href)) {
+				$(this).closest("li").addClass("active");
+			}
+		});
+
+	});
+</script>
+<style>
+.table-bordered{
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main_container">
+			<div class="container pt-4 pb-4">
+				<h3 class="text-center">Job List</h3>
+			</div>
+
+			<div class="row mb-3 pt-sm-3">
+				<div class="col-md-12">
+					<div class="table table-hover table-bordered"
+						style="background-color: #008CBA; color: white;">
+						<colgroup>
+							<col style="width: 600px">
+							<col>
+							<col>
+							<col>
+							<col>
+						</colgroup>
+						<thead>
+							<tr>
+								<th class="text-center">Job Title</th>
+								<th class="text-center">Category</th>
+								<th class="text-center">Location</th>
+								<th class="text-center">Status</th>
+								<th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Add your table rows here -->
+						</tbody>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
