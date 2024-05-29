@@ -7,8 +7,8 @@
 					<div class="col-lg-3 col-md-2">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="/PBL3/trang-chu"><img src="<c:url value = '/assets/img/logo/logo.png'/>"
-								alt=""/></a>
+							<a href="/PBL3/trang-chu"><img
+								src="<c:url value = '/assets/img/logo/logo.png'/>" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-lg-9 col-md-9">
@@ -17,15 +17,22 @@
 							<div class="main-menu">
 								<nav class="d-none d-lg-block">
 									<ul id="navigation">
-										<li><a href="${pageContext.request.contextPath}/admin-job">Job</a></li>
-										<li><a href="${pageContext.request.contextPath}/admin-user">User</a></li>
-										<li><a href="${pageContext.request.contextPath}/admin-recruiter">Recruiter</a></li>
+										<li><a
+											href="${pageContext.request.contextPath}/admin-dashboard">Dashboard</a></li>
+										<li><a
+											href="${pageContext.request.contextPath}/admin-job">Job</a></li>
+										<li><a
+											href="${pageContext.request.contextPath}/admin-user">User</a></li>
+										<li><a
+											href="${pageContext.request.contextPath}/admin-recruiter">Recruiter</a></li>
 									</ul>
 								</nav>
 							</div>
 							<!-- Header-btn -->
 							<div class="header-btn d-none f-right d-lg-block">
-								<a href="${pageContext.request.contextPath}/admin-home" class="btn head-btn1">Admin</a> <a href="${pageContext.request.contextPath}/logout"
+								<a href="${pageContext.request.contextPath}/admin-home"
+									class="btn head-btn1">Admin</a> <a
+									href="${pageContext.request.contextPath}/logout"
 									class="btn head-btn2">Logout</a>
 							</div>
 						</div>

@@ -1,3 +1,4 @@
+<%@page import="com.jobportal.model.Countries"%>
 <%@page import="com.jobportal.model.RecruitersDetail"%>
 <%@page import="com.jobportal.model.UsersDetail"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,9 +30,10 @@
 									</p>
 									<p class="text-muted font-size-sm text-capitalize">
 										<i class=""fasfa-map-marker-alt"></i>
-										<c:out value="${recruiterDetail.country}" />
+										<c:out value="${country.name}" />
 									</p>
-									<a id="editButton" href="
+									<a id="editButton"
+										href="
 										<%=request.getContextPath()%>/recruiter-detail-form"
 										class="btn btn-success">Edit</a>
 								</div>
@@ -57,11 +59,11 @@
 								<h6 class="mb-0">Link web</h6>
 							</div>
 							<div class="col-sm-9 text-secondary text-capitalize">
-								<c:out value="${recruiterDetail.web}" />
+								<a href="<c:out value="${recruiterDetail.web}" />"><p><c:out value="${recruiterDetail.web}" /></p></a>
 							</div>
 						</div>
-		
-						
+
+
 						<hr />
 						<div class="row">
 							<div class="col-sm-3">
@@ -86,15 +88,25 @@
 
 	<%
 		// Giả sử recruiterDetail là một đối tượng được truyền từ phía back-end
-		RecruitersDetail recruiterDetail = (RecruitersDetail)request.getAttribute("recruiterDetail");
+		RecruitersDetail recruiterDetail = (RecruitersDetail) request.getAttribute("recruiterDetail");
+		Countries country = (Countries) request.getAttribute("country");
 	%>
 
 	<script>
-    var recruiterDetailExists = <%=recruiterDetail != null ? "true" : "false"%>;
+		var recruiterDetailExists =
+	<%=recruiterDetail != null ? "true" : "false"%>
+		;
 
-    // Nếu userDetail tồn tại, thêm sự kiện click vào nút Edit
-    if (recruiterDetailExists) {
-        document.getElementById('editButton').setAttribute("href", "/PBL3/recruiter-detail-edit?id=<c:out value='${recruiter.id}' />");
+		var countryExists =
+	<%=country != null ? "true" : "false"%>
+		;
+
+		// Nếu userDetail tồn tại, thêm sự kiện click vào nút Edit
+		if (recruiterDetailExists && countryExists) {
+			document
+					.getElementById('editButton')
+					.setAttribute("href",
+							"/PBL3/recruiter-detail-edit?id=<c:out value='${recruiter.id}' />");
 		}
 	</script>
 

@@ -22,7 +22,7 @@
 				<c:if test="${recruiterDetail != null}">
 					<form action="/PBL3/recruiter-detail-update" method="post">
 				</c:if>
-				<c:if test="${userDetail == null}">
+				<c:if test="${recruiterDetail == null}">
 					<form action="/PBL3/recruiter-detail-insert" method="post">
 				</c:if>
 
@@ -55,7 +55,7 @@
 				
 				<fieldset class="form-group">
 					<label>Country</label> <input type="text"
-						value="<c:out value='${recruiterDetail.country}' />" class="form-control"
+						value="<c:out value='${country.name}' />" class="form-control"
 						name="country">
 				</fieldset>
 

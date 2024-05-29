@@ -12,7 +12,7 @@
 		value="<%=request.getAttribute("status")%>">
 	<div class="main-body">
 		<div class="row justify-content-center">
-			<h3 class="text-center">Information</h3>
+			<h3 class="text-center">Account Information</h3>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-md-8">

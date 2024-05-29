@@ -44,13 +44,15 @@
 							<td><c:out value="${recruiter.upwd}" /></td>
 							<td><c:out value="${recruiter.uemail}" /></td>
 							<td><c:out value="${recruiter.umobile}" /></td>
-							 
+
 							<td><a
 								href="/PBL3/admin-recruiter-edit?id=<c:out value='${recruiter.id}' />"><p>Edit</p></a>
-								&nbsp;&nbsp;&nbsp;&nbsp; <a
+								<a
 								href="/PBL3/admin-recruiter-delete?id=<c:out value='${recruiter.id}' />"><p>Delete</p></a>
-							</td>							
-							
+								<a
+								href="/PBL3/admin-recruiter-resume?id=<c:out value='${recruiter.id}' />"><p>View</p></a>
+							</td>
+
 						</tr>
 					</c:forEach>
 					<!-- } -->

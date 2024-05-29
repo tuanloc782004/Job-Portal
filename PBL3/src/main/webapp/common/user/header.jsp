@@ -17,16 +17,13 @@
 							<div class="main-menu">
 								<nav class="d-none d-lg-block">
 									<ul id="navigation">
-										<li><a href="${pageContext.request.contextPath}/user-job">Find
-												a Jobs</a></li>
-										<li><a
-											href="${pageContext.request.contextPath}/user-applied-jobs">Applied
-												Jobs</a></li>
 										<li><a
 											href="${pageContext.request.contextPath}/user-resume">Resume</a></li>
+										<li><a href="${pageContext.request.contextPath}/user-job">Find
+												Jobs</a></li>
 										<li><a
-											href="${pageContext.request.contextPath}/user-change-password">Change
-												Password</a></li>
+											href="${pageContext.request.contextPath}/user-applied-job">Applied
+												Jobs</a></li>
 									</ul>
 								</nav>
 							</div>

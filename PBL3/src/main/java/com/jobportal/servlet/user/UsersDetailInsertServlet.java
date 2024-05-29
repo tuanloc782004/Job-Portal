@@ -9,33 +9,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jobportal.DAO.CategoriesDAO;
+import com.jobportal.DAO.LocationsDAO;
 import com.jobportal.DAO.UsersDetailDAO;
+import com.jobportal.model.Categories;
+import com.jobportal.model.Locations;
 import com.jobportal.model.Users;
 import com.jobportal.model.UsersDetail;
 
 @WebServlet(urlPatterns = { "/user-detail-insert" })
 public class UsersDetailInsertServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private UsersDetailDAO userDetailDAO;
+	private LocationsDAO lDAO;
+	private CategoriesDAO cDAO;
 	
 	public UsersDetailInsertServlet() {
 		this.userDetailDAO = new UsersDetailDAO();
+		this.lDAO = new LocationsDAO();
+		this.cDAO = new CategoriesDAO();
 	}
 
 	public void init() {
 		userDetailDAO = new UsersDetailDAO();
+		lDAO = new LocationsDAO();
+		cDAO = new CategoriesDAO();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			String category = request.getParameter("category");
-			String country = request.getParameter("country");
+			String location = request.getParameter("location");
 			String workExperience = request.getParameter("workExperience");
 			String education = request.getParameter("education");
 			String professionalSkills = request.getParameter("professionalSkills");
@@ -45,7 +52,13 @@ public class UsersDetailInsertServlet extends HttpServlet {
 			Users user = (Users) session.getAttribute("user");
 			int id = user.getId();
 			
-			UsersDetail newU = new UsersDetail(id, category, country, workExperience, education, professionalSkills, img);
+			Locations l = lDAO.selectDataByName(location);
+			int idLocation = l.getId();
+			
+			Categories c = cDAO.selectDataByName(category);
+			int idCategory = c.getId();
+			
+			UsersDetail newU = new UsersDetail(id, idCategory, idLocation, workExperience, education, professionalSkills, img);
 			userDetailDAO.insertUser(newU);
 
 			response.sendRedirect(request.getContextPath() + "/user-resume");

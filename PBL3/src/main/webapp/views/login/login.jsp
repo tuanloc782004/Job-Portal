@@ -31,6 +31,8 @@
 						<h2 class="form-title">Sign in</h2>
 						<form method="post" action="login" class="register-form"
 							id="login-form">
+							<input type="hidden" name="id"
+								value="${id }">
 							<div class="form-group">
 								<label for="username"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
@@ -43,7 +45,8 @@
 									placeholder="Password" />
 							</div>
 							<div class="form-group">
-								<a href="${pageContext.request.contextPath}/forgotPassword"><p>Forgot Password?</p></a>
+								<a href="${pageContext.request.contextPath}/forgotPassword"><p>Forgot
+										Password?</p></a>
 							</div>
 							<div class="form-group form-button">
 								<input type="submit" name="signin" id="signin"

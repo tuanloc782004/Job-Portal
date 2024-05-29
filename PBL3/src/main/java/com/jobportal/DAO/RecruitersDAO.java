@@ -7,12 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.ArrayBlockingQueue;
-
-import javax.tools.Diagnostic;
 
 import com.jobportal.model.Recruiters;
-import com.jobportal.model.Users;
 
 public class RecruitersDAO {
 

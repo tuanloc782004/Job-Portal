@@ -44,13 +44,14 @@
 							<td><c:out value="${user.upwd}" /></td>
 							<td><c:out value="${user.uemail}" /></td>
 							<td><c:out value="${user.umobile}" /></td>
-							 
+
 							<td><a
 								href="/PBL3/admin-user-edit?id=<c:out value='${user.id}' />"><p>Edit</p></a>
-								&nbsp;&nbsp;&nbsp;&nbsp; <a
+								<a
 								href="/PBL3/admin-user-delete?id=<c:out value='${user.id}' />"><p>Delete</p></a>
-							</td>							
-							
+								<a
+								href="/PBL3/admin-user-resume?id=<c:out value='${user.id}' />"><p>View</p></a>
+							</td>
 						</tr>
 					</c:forEach>
 					<!-- } -->

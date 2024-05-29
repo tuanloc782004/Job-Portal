@@ -3,8 +3,8 @@ package com.jobportal.model;
 public class UsersDetail {
 	
 	private int idUser;
-	private String category;
-	private String country;
+	private int idCategory;
+	private int idLocation;
 	private String workExperience;
 	private String education;
 	private String professionalSkills;
@@ -15,12 +15,12 @@ public class UsersDetail {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UsersDetail(int idUser, String category, String country, String workExperience, String education,
+	public UsersDetail(int idUser, int idCategory, int idLocation, String workExperience, String education,
 			String professionalSkills, String img) {
 		super();
 		this.idUser = idUser;
-		this.category = category;
-		this.country = country;
+		this.idCategory = idCategory;
+		this.idLocation = idLocation;
 		this.workExperience = workExperience;
 		this.education = education;
 		this.professionalSkills = professionalSkills;
@@ -35,20 +35,20 @@ public class UsersDetail {
 		this.idUser = idUser;
 	}
 
-	public String getCategory() {
-		return category;
+	public int getIdCategory() {
+		return idCategory;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setIdCategory(int idCategory) {
+		this.idCategory = idCategory;
 	}
 
-	public String getCountry() {
-		return country;
+	public int getIdLocation() {
+		return idLocation;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setIdLocation(int idLocation) {
+		this.idLocation = idLocation;
 	}
 
 	public String getWorkExperience() {
@@ -82,5 +82,5 @@ public class UsersDetail {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+
 }

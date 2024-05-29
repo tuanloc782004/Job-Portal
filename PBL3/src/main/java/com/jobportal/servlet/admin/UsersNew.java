@@ -9,30 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jobportal.DAO.UsersDAO;
-
-
 @WebServlet(urlPatterns = { "/admin-user-new"})
 public class UsersNew extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private UsersDAO usersDAO;
-
-	public UsersNew() {
-		this.usersDAO = new UsersDAO();
-	}
-
-	public void init () {
-		usersDAO = new UsersDAO();
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

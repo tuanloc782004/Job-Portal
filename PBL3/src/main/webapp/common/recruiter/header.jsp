@@ -18,11 +18,10 @@
 								<nav class="d-none d-lg-block">
 									<ul id="navigation">
 										<li><a
+											href="${pageContext.request.contextPath}/recruiter-resume">Introduce</a></li>
+										<li><a
 											href="${pageContext.request.contextPath}/recruiter-job">Posted
 												Jobs</a></li>
-										<li><a href="${pageContext.request.contextPath}/recruiter-applicant">Applicant</a></li>
-										<li><a href="${pageContext.request.contextPath}/recruiter-resume">Introduce</a></li>
-										<li><a href="${pageContext.request.contextPath}/recruiter-change-password">Change Password</a></li>
 									</ul>
 								</nav>
 							</div>

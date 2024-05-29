@@ -1,3 +1,5 @@
+<%@page import="com.jobportal.model.Categories"%>
+<%@page import="com.jobportal.model.Locations"%>
 <%@page import="com.jobportal.model.UsersDetail"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -28,7 +30,7 @@
 									</p>
 									<p class="text-muted font-size-sm text-capitalize">
 										<i class=""fasfa-map-marker-alt"></i>
-										<c:out value="${userDetail.country}" />
+										<c:out value="${location.name}" />
 									</p>
 									<a id="editButton" href="
 										<%=request.getContextPath()%>/user-detail-form"
@@ -47,7 +49,7 @@
 								<h6 class="mb-0">Category</h6>
 							</div>
 							<div class="col-sm-9 text-secondary text-capitalize">
-								<c:out value="${userDetail.category}" />
+								<c:out value="${category.name}" />
 							</div>
 						</div>
 						<hr />
@@ -102,13 +104,17 @@
 	<%
 		// Giả sử userDetail là một đối tượng được truyền từ phía back-end
 		UsersDetail userDetail = (UsersDetail) request.getAttribute("userDetail");
+		Locations location = (Locations) request.getAttribute("location");
+		Categories category = (Categories) request.getAttribute("category");
 	%>
 
 	<script>
     var userDetailExists = <%=userDetail != null ? "true" : "false"%>;
+    var locationExists = <%=location != null ? "true" : "false"%>;
+    var categoryExists = <%=category != null ? "true" : "false"%>;
 
     // Nếu userDetail tồn tại, thêm sự kiện click vào nút Edit
-    if (userDetailExists) {
+    if (userDetailExists && locationExists && categoryExists) {
         document.getElementById('editButton').setAttribute("href", "/PBL3/user-detail-edit?id=<c:out value='${user.id}' />");
 		}
 	</script>

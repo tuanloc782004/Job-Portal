@@ -7,9 +7,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.ArrayBlockingQueue;
-
-import javax.tools.Diagnostic;
 
 import com.jobportal.model.Users;
 
@@ -26,7 +23,18 @@ public class UsersDAO {
 	private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
 	private static final String UPDATE_USERS_SQL = "update users set uname = ?, upwd = ?, uemail = ?, umobile = ? where id = ?;";
 	private static final String GET_USER_BY_EMAIL = "SELECT id, uname, upwd, umobile FROM users WHERE uemail = ?";
+	//
+	private static final String GET_DATA = "select u.* from users u inner join applications a on u.id = a.id_user where a.id_job = ?"
+			+ " LIMIT ?" + " OFFSET ?";
+	private static final String GET_DATA_BY_KEY = "SELECT u.* " + "FROM users u "
+			+ "INNER JOIN applications a ON u.id = a.id_user " + "WHERE u.uname LIKE ? " + "AND u.uemail LIKE ? "
+			+ "AND a.id_job = ? " + "LIMIT ? OFFSET ?";
+	private static final String COUNT_DATA = "select count(*) as total from users u inner join applications a on u.id = a.id_user WHERE a.id_job = ?";
+	private static final String COUNT_DATA_BY_KEY = "SELECT COUNT(*) AS total "
+			+ "FROM users u INNER JOIN applications a ON u.id = a.id_user "
+			+ "WHERE u.uname LIKE ? AND u.uemail LIKE ? AND a.id_job = ?";
 
+	//
 	protected Connection getConnection() {
 		Connection connection = null;
 		try {
@@ -38,6 +46,106 @@ public class UsersDAO {
 			e.printStackTrace();
 		}
 		return connection;
+	}
+
+	public int countData(int idJob) {
+		int total = 0;
+
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(COUNT_DATA)) {
+
+			preparedStatement.setInt(1, idJob);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					total = resultSet.getInt("total");
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return total;
+	}
+
+	public int countDataByKey(String key, int idJob) {
+		int total = 0;
+
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(COUNT_DATA_BY_KEY)) {
+
+			preparedStatement.setString(1, "%" + key + "%");
+			preparedStatement.setString(2, "%" + key + "%");
+			preparedStatement.setInt(3, idJob);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					total = resultSet.getInt("total");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return total;
+	}
+
+	public List<Users> getData(int idJob, int limit, int page) {
+		List<Users> users = new ArrayList<>();
+		int offset = (page - 1) * limit;
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(GET_DATA);) {
+			preparedStatement.setInt(1, idJob);
+			preparedStatement.setInt(2, limit);
+			preparedStatement.setInt(3, offset);
+			System.out.println(preparedStatement);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String uname = rs.getString("uname");
+				String uemail = rs.getString("uemail");
+				String upwd = rs.getString("upwd");
+				String umobile = rs.getString("umobile");
+
+				users.add(new Users(id, uname, upwd, uemail, umobile));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public List<Users> getDataByKey(String key, int idJob, int limit, int page) {
+		List<Users> users = new ArrayList<>();
+		int offset = (page - 1) * limit;
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(GET_DATA_BY_KEY);) {
+
+			preparedStatement.setString(1, "%" + key + "%");
+			preparedStatement.setString(2, "%" + key + "%");
+			preparedStatement.setInt(3, idJob);
+			preparedStatement.setInt(4, limit);
+			preparedStatement.setInt(5, offset);
+			System.out.println(preparedStatement);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String uname = rs.getString("uname");
+				String uemail = rs.getString("uemail");
+				String upwd = rs.getString("upwd");
+				String umobile = rs.getString("umobile");
+
+				users.add(new Users(id, uname, upwd, uemail, umobile));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 
 	// get user by email

@@ -7,18 +7,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.jobportal.model.RecruitersDetail;
-import com.jobportal.model.UsersDetail;
 
 public class RecruitersDetailDAO {
+	
+	public RecruitersDetailDAO () {
+		super();
+	}
 
 	private String jdbcURL = "jdbc:mysql://localhost:3306/jobportal?useSSl=false";
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "782004tuanloc";
 
-	private static final String INSERT_USERS_SQL = "INSERT INTO recruiters_detail " + "(id_recruiter, description,country,web,img) VALUES "
+	private static final String INSERT_USERS_SQL = "INSERT INTO recruiters_detail " + "(id_recruiter, description,id_country,web,img) VALUES "
 			+ "(?,?,?,?,?);";
-	private static final String SELECT_USER_BY_ID = "select id_recruiter,description,country,web,img from recruiters_detail where id_recruiter=?";
-	private static final String UPDATE_USERS_SQL = "update recruiters_detail set description = ?, country = ?, web = ?,img = ?  where id_recruiter = ?;";
+	private static final String SELECT_USER_BY_ID = "select id_recruiter,description,id_country,web,img from recruiters_detail where id_recruiter=?";
+	private static final String UPDATE_USERS_SQL = "update recruiters_detail set description = ?, id_country = ?, web = ?,img = ?  where id_recruiter = ?;";
 
 	protected Connection getConnection() {
 		Connection connection = null;
@@ -39,7 +42,7 @@ public class RecruitersDetailDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);) {
 			preparedStatement.setInt(1, user.getIdRecruiter());
 			preparedStatement.setString(2, user.getDescription());
-			preparedStatement.setString(3, user.getCountry());
+			preparedStatement.setInt(3, user.getIdCountry());
 			preparedStatement.setString(4, user.getWeb());
 			preparedStatement.setString(5, user.getImg());
 			
@@ -59,7 +62,7 @@ public class RecruitersDetailDAO {
 				PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
 		
 			statement.setString(1, user.getDescription());
-			statement.setString(2, user.getCountry());
+			statement.setInt(2, user.getIdCountry());
 			statement.setString(3, user.getWeb());
 			statement.setString(4, user.getImg());
 			statement.setInt(5, user.getIdRecruiter());
@@ -81,10 +84,10 @@ public class RecruitersDetailDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				String description = rs.getString("description");
-				String country = rs.getString("country");
+				int idCountry = rs.getInt("id_country");
 				String web = rs.getString("web");
 				String img = rs.getString("img");
-				userDetail = new RecruitersDetail(id, description, country, web,img);
+				userDetail = new RecruitersDetail(id, description, idCountry, web,img);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

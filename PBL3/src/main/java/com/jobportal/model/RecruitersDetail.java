@@ -4,25 +4,18 @@ public class RecruitersDetail {
 
 	private int idRecruiter;
 	private String description;
-	private String country;
+	private int idCountry;
 	private String web;
 	private String img;
 	public RecruitersDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RecruitersDetail(int idRecruiter, String description, String country, String web, String img) {
+	public RecruitersDetail(int idRecruiter, String description, int idCountry, String web, String img) {
 		super();
 		this.idRecruiter = idRecruiter;
 		this.description = description;
-		this.country = country;
-		this.web = web;
-		this.img = img;
-	}
-	public RecruitersDetail(String description, String country, String web, String img) {
-		super();
-		this.description = description;
-		this.country = country;
+		this.idCountry = idCountry;
 		this.web = web;
 		this.img = img;
 	}
@@ -38,11 +31,11 @@ public class RecruitersDetail {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCountry() {
-		return country;
+	public int getIdCountry() {
+		return idCountry;
 	}
-	public void setCountry(String country) {
-		this.country = country;
+	public void setIdCountry(int idCountry) {
+		this.idCountry = idCountry;
 	}
 	public String getWeb() {
 		return web;
@@ -56,7 +49,4 @@ public class RecruitersDetail {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
-	
-
 }

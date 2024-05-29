@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jobportal.DAO.CountriesDAO;
 import com.jobportal.DAO.RecruitersDetailDAO;
-import com.jobportal.DAO.UsersDetailDAO;
+import com.jobportal.model.Countries;
 import com.jobportal.model.RecruitersDetail;
-import com.jobportal.model.UsersDetail;
 
 @WebServlet(urlPatterns = { "/recruiter-detail-edit" })
 public class RecruitersDetailEditServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private RecruitersDetailDAO recruitersDetailDAO;
+	private CountriesDAO countriesDAO;
 
 	public void init() {
 		recruitersDetailDAO = new RecruitersDetailDAO();
+		countriesDAO = new CountriesDAO();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,6 +40,10 @@ public class RecruitersDetailEditServlet extends HttpServlet {
 			RecruitersDetail existingUser = recruitersDetailDAO.selectRecruiterDetail(id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/recruiter/recruiterDetailForm.jsp");
 			request.setAttribute("recruiterDetail", existingUser);
+			
+			Countries co = countriesDAO.selectDataById(existingUser.getIdCountry());
+			request.setAttribute("country", co);
+			
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

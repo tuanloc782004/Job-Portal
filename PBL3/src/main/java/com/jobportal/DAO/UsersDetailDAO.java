@@ -14,10 +14,10 @@ public class UsersDetailDAO {
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "782004tuanloc";
 
-	private static final String INSERT_USERS_SQL = "INSERT INTO users_detail " + "(id_user, category,country,work_experience,education,professional_skills,img) VALUES "
+	private static final String INSERT_USERS_SQL = "INSERT INTO users_detail " + "(id_user, id_category,id_location,work_experience,education,professional_skills,img) VALUES "
 			+ "(?,?,?,?,?,?,?);";
-	private static final String SELECT_USER_BY_ID = "select id_user,category,country,work_experience,education,professional_skills,img from users_detail where id_user=?";
-	private static final String UPDATE_USERS_SQL = "update users_detail set category = ?, country = ?, work_experience = ?, education = ?,professional_skills=?,img = ?  where id_user = ?;";
+	private static final String SELECT_USER_BY_ID = "select id_user,id_category,id_location,work_experience,education,professional_skills,img from users_detail where id_user=?";
+	private static final String UPDATE_USERS_SQL = "update users_detail set id_category = ?, id_location = ?, work_experience = ?, education = ?,professional_skills=?,img = ?  where id_user = ?;";
 
 	protected Connection getConnection() {
 		Connection connection = null;
@@ -37,8 +37,8 @@ public class UsersDetailDAO {
 		try (Connection connection = getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);) {
 			preparedStatement.setInt(1, user.getIdUser());
-			preparedStatement.setString(2, user.getCategory());
-			preparedStatement.setString(3, user.getCountry());
+			preparedStatement.setInt(2, user.getIdCategory());
+			preparedStatement.setInt(3, user.getIdLocation());
 			preparedStatement.setString(4, user.getWorkExperience());
 			preparedStatement.setString(5, user.getEducation());
 			preparedStatement.setString(6, user.getProfessionalSkills());
@@ -58,8 +58,8 @@ public class UsersDetailDAO {
 		boolean rowUpdate;
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
-			statement.setString(1, user.getCategory());
-			statement.setString(2, user.getCountry());
+			statement.setInt(1, user.getIdCategory());
+			statement.setInt(2, user.getIdLocation());
 			statement.setString(3, user.getWorkExperience());
 			statement.setString(4, user.getEducation());
 			statement.setString(5, user.getProfessionalSkills());
@@ -82,13 +82,13 @@ public class UsersDetailDAO {
 
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				String category = rs.getString("category");
-				String country = rs.getString("country");
+				int idCategory = rs.getInt("id_category");
+				int idLocation = rs.getInt("id_location");
 				String workExperience = rs.getString("work_experience");
 				String education = rs.getString("education");
 				String professionalSkills = rs.getString("professional_skills");
 				String img = rs.getString("img");
-				userDetail = new UsersDetail(id, category, country, workExperience, education, professionalSkills, img);
+				userDetail = new UsersDetail(id, idCategory, idLocation, workExperience, education, professionalSkills, img);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
