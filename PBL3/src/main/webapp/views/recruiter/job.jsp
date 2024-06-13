@@ -141,12 +141,16 @@
 												<h4>
 													<c:out value="${job.category.name}" />
 												</h4>
-												<ul>
-													<li><c:out value="${job.recruiter.uname}" /></li>
-													<li><i class="fas fa-map-marker-alt"></i> <c:out
-															value="${job.location.name}" /></li>
-													<li><c:out value="${job.salary}" /></li>
-												</ul>
+												<div>
+													<c:out value="${job.recruiter.uname}" />
+												</div>
+												<!-- Job Location and Salary on the next line -->
+												<div>
+													<i class="fas fa-map-marker-alt"></i>
+													<c:out value="${job.location.name}" />
+													<span> | </span>
+													<c:out value="${job.salary}" />
+												</div>
 												<div class="row">
 													<div class="col-md-4">
 														<div class="items-link items-link2 f-left">

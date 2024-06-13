@@ -37,7 +37,7 @@ public class RecruitersDetailUpdateServlet extends HttpServlet {
 		try {
 			int idRecruiter = Integer.parseInt(request.getParameter("id"));
 			String description = request.getParameter("description");
-			String country = request.getParameter("country");
+			String country = request.getParameter("countryS");
 			String web = request.getParameter("web");
 			String img = request.getParameter("img");
 			

@@ -33,7 +33,8 @@
 								</div>
 							</div>
 						</div>
-						<input type="hidden" name="idJob" value="<c:out value='${job.id}' />" />
+						<input type="hidden" name="idJob"
+							value="<c:out value='${job.id}' />" />
 						<!-- Job Category Listing start -->
 						<div class="job-category-listing mb-50">
 							<!-- single one -->
@@ -126,8 +127,7 @@
 									<div class="single-job-items mb-30">
 										<div class="job-items">
 											<div class="company-img">
-												<a
-													href="/PBL3/admin-recruiter-resume?id=${job.idRecruiter}"><img
+												<a href="/PBL3/admin-recruiter-resume?id=${job.idRecruiter}"><img
 													src="${pageContext.request.contextPath}<c:out value="${job.recruiterDetail.img}" />"
 													alt="" style="width: 100px; height: 100px;"></a>
 											</div>
@@ -135,12 +135,16 @@
 												<h4>
 													<c:out value="${job.category.name}" />
 												</h4>
-												<ul>
-													<li><c:out value="${job.recruiter.uname}" /></li>
-													<li><i class="fas fa-map-marker-alt"></i> <c:out
-															value="${job.location.name}" /></li>
-													<li><c:out value="${job.salary}" /></li>
-												</ul>
+												<div>
+													<c:out value="${job.recruiter.uname}" />
+												</div>
+												<!-- Job Location and Salary on the next line -->
+												<div>
+													<i class="fas fa-map-marker-alt"></i>
+													<c:out value="${job.location.name}" />
+													<span> | </span>
+													<c:out value="${job.salary}" />
+												</div>
 											</div>
 										</div>
 										<div class="items-link items-link2 f-right">

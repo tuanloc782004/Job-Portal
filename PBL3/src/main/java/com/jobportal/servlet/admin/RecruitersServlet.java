@@ -20,14 +20,14 @@ public class RecruitersServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private RecruitersDAO recruitersDAO;
+	private RecruitersDAO rDAO;
 
 	public RecruitersServlet() {
-		this.recruitersDAO = new RecruitersDAO();
+		this.rDAO = new RecruitersDAO();
 	}
 
 	public void init() {
-		recruitersDAO = new RecruitersDAO();
+		rDAO = new RecruitersDAO();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,13 +39,45 @@ public class RecruitersServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		try {
-			List<Recruiters> listRecruiter = recruitersDAO.selectAllRecruiters();
-			request.setAttribute("listRecruiter", listRecruiter);
+			String key = request.getParameter("key");
+			String pageParam = request.getParameter("page");
+			
+			int page = 1;
+			int limit = 6;
+			if (pageParam != null && !pageParam.isEmpty()) {
+				try {
+					page = Integer.parseInt(pageParam);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
+			request.setAttribute("page", page);
+			
+			List<Recruiters> r = null;
+			
+			int totalRecord = 1;
+			
+			if (key == null || key == "" || key.isEmpty()) {
+				r = rDAO.getDataAdmin(limit, page);
+				totalRecord = rDAO.countDataAdmin();
+				request.setAttribute("totalRecord", totalRecord);
+			} else {
+				r = rDAO.getDataByKeyAdmin(key, limit, page);
+				totalRecord = rDAO.countDataByKeyAdmin(key);
+				request.setAttribute("totalRecord", totalRecord);
+			}
+			
+			request.setAttribute("listRecruiter", r);
+			
+			int totalPage = (int) Math.ceil((float) totalRecord / (float) limit);
+			request.setAttribute("totalPage", totalPage);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/recruiter.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 
 	}
 

@@ -37,7 +37,7 @@ public class RecruitersDetailInsertServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			String description = request.getParameter("description");
-			String country = request.getParameter("country");
+			String country = request.getParameter("countryS");
 			String web = request.getParameter("web");
 			String img = request.getParameter("img");
 			

@@ -7,7 +7,7 @@
 					<div class="col-lg-3 col-md-2">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="/PBL3/trang-chu"><img src="<c:url value = '/assets/img/logo/logo.png'/>"
+							<a href="/PBL3/trang-chu"><img src="<c:url value = '/assets/img/logo/logo1.png'/>"
 								alt=""/></a>
 						</div>
 					</div>

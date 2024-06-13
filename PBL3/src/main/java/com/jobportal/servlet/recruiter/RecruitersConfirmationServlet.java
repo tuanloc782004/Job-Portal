@@ -59,7 +59,7 @@ public class RecruitersConfirmationServlet extends HttpServlet {
 
 			Jobs job = jDAO.getDataById(idJob);
 
-			if (idConfirmation == 3) {
+			if (idConfirmation == 1) {
 				response.sendRedirect("/PBL3/recruiter-job-applicant?id=" + idJob);
 			} else {
 
@@ -87,7 +87,7 @@ public class RecruitersConfirmationServlet extends HttpServlet {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress("cuem782004@gmail.com"));
 					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-					if (idConfirmation == 1) {
+					if (idConfirmation == 2) {
 						message.setSubject("Congratulations");
 						message.setText("Congratulations " + user.getUname()
 								+ ", you have passed the resume screening stage to proceed to the interview round. Please contact "

@@ -1,6 +1,7 @@
 package com.jobportal.servlet.recruiter;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,13 +37,16 @@ public class RecruitersDetailEditServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		try {
+			List<Countries> c = countriesDAO.getAll();
+			request.setAttribute("countries", c);
+			
 			int id = Integer.parseInt(request.getParameter("id"));
 			RecruitersDetail existingUser = recruitersDetailDAO.selectRecruiterDetail(id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/recruiter/recruiterDetailForm.jsp");
 			request.setAttribute("recruiterDetail", existingUser);
 			
 			Countries co = countriesDAO.selectDataById(existingUser.getIdCountry());
-			request.setAttribute("country", co);
+			request.setAttribute("countryS", co);
 			
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

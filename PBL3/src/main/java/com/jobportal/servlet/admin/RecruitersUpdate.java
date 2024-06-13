@@ -59,7 +59,7 @@ public class RecruitersUpdate extends HttpServlet {
 			recruitersDAO.updateRecruiter(newr);
 
 			HttpSession session = request.getSession();
-			session.setAttribute("user", newr);
+			session.setAttribute("recruiter", newr);
 			response.sendRedirect("/PBL3/recruiter-home");
 
 		} catch (Exception e) {

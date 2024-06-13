@@ -33,7 +33,7 @@ public class JobsApplyServlet extends HttpServlet {
 		try {
 			
 			int idJob = Integer.parseInt(request.getParameter("id"));
-			int idConfirmation = 3;
+			int idConfirmation = 1;
 			
 			HttpSession session = request.getSession();
 			Users user = (Users) session.getAttribute("user");

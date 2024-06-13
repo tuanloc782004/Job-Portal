@@ -74,36 +74,36 @@ public class JobController extends HttpServlet {
 		int totalRecord = 1;
 
 		if (categoryS == -1 && locationS == -1 && typeS == -1) {
-			jobs = jDAO.getAll(limit, page);
-			totalRecord = jDAO.countAll();
+			jobs = jDAO.getAllAdmin(limit, page);
+			totalRecord = jDAO.countAllAdmin();
 			request.setAttribute("totalRecord", totalRecord);
 		} else if (categoryS != -1 && locationS == -1 && typeS == -1) {
-			jobs = jDAO.getAllByC(categoryS, limit, page);
-			totalRecord = jDAO.countAllByC(categoryS);
+			jobs = jDAO.getAllByCAdmin(categoryS, limit, page);
+			totalRecord = jDAO.countAllByCAdmin(categoryS);
 			request.setAttribute("totalRecord", totalRecord);
 		} else if (categoryS == -1 && locationS != -1 && typeS == -1) {
-			jobs = jDAO.getAllByL(locationS, limit, page);
-			totalRecord = jDAO.countAllByL(locationS);
+			jobs = jDAO.getAllByLAdmin(locationS, limit, page);
+			totalRecord = jDAO.countAllByLAdmin(locationS);
 			request.setAttribute("totalRecord", totalRecord);
 		} else if (categoryS == -1 && locationS == -1 && typeS != -1) {
-			jobs = jDAO.getAllByT(typeS, limit, page);
-			totalRecord = jDAO.countAllByT(typeS);
+			jobs = jDAO.getAllByTAdmin(typeS, limit, page);
+			totalRecord = jDAO.countAllByTAdmin(typeS);
 			request.setAttribute("totalRecord", totalRecord);
 		} else if (categoryS != -1 && locationS != -1 && typeS == -1) {
-			jobs = jDAO.getAllByCL(categoryS, locationS, limit, page);
-			totalRecord = jDAO.countAllByCL(categoryS, locationS);
+			jobs = jDAO.getAllByCLAdmin(categoryS, locationS, limit, page);
+			totalRecord = jDAO.countAllByCLAdmin(categoryS, locationS);
 			request.setAttribute("totalRecord", totalRecord);
 		} else if (categoryS != -1 && locationS == -1 && typeS != -1) {
-			jobs = jDAO.getAllByCT(categoryS, typeS, limit, page);
-			totalRecord = jDAO.countAllByCT(categoryS, typeS);
+			jobs = jDAO.getAllByCTAdmin(categoryS, typeS, limit, page);
+			totalRecord = jDAO.countAllByCTAdmin(categoryS, typeS);
 			request.setAttribute("totalRecord", totalRecord);
 		} else if (categoryS == -1 && locationS != -1 && typeS != -1) {
-			jobs = jDAO.getAllByLT(locationS, typeS, limit, page);
-			totalRecord = jDAO.countAllByLT(locationS, typeS);
+			jobs = jDAO.getAllByLTAdmin(locationS, typeS, limit, page);
+			totalRecord = jDAO.countAllByLTAdmin(locationS, typeS);
 			request.setAttribute("totalRecord", totalRecord);
 		} else {
-			jobs = jDAO.getAllByCLT(categoryS, locationS, typeS, limit, page);
-			totalRecord = jDAO.countAllByCLT(categoryS, locationS, typeS);
+			jobs = jDAO.getAllByCLTAdmin(categoryS, locationS, typeS, limit, page);
+			totalRecord = jDAO.countAllByCLTAdmin(categoryS, locationS, typeS);
 			request.setAttribute("totalRecord", totalRecord);
 		}
 

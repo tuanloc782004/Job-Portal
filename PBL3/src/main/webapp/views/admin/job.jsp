@@ -14,8 +14,8 @@
 		<main> <!-- Hero Area Start--> <!-- Hero Area End --> <!-- Job List Area Start -->
 		<div class="job-listing-area pt-120 pb-120">
 			<div class="container">
-			<h3 class= "text-center">List of Jobs</h3>
-			<hr>
+				<h3 class="text-center">List of Jobs</h3>
+				<hr>
 				<div class="row">
 					<!-- Left content -->
 					<div class="col-xl-3 col-lg-3 col-md-4">
@@ -127,8 +127,7 @@
 									<div class="single-job-items mb-30">
 										<div class="job-items">
 											<div class="company-img">
-												<a
-													href="/PBL3/admin-recruiter-resume?id=${job.idRecruiter}"><img
+												<a href="/PBL3/admin-recruiter-resume?id=${job.idRecruiter}"><img
 													src="${pageContext.request.contextPath}<c:out value="${job.recruiterDetail.img}" />"
 													alt="" style="width: 100px; height: 100px;"></a>
 											</div>
@@ -136,21 +135,37 @@
 												<h4>
 													<c:out value="${job.category.name}" />
 												</h4>
-												<ul>
-													<li><c:out value="${job.recruiter.uname}" /></li>
-													<li><i class="fas fa-map-marker-alt"></i> <c:out
-															value="${job.location.name}" /></li>
-													<li><c:out value="${job.salary}" /></li>
-												</ul>
-												<div class="items-link items-link2 f-center">
-													<a href="/PBL3/admin-job-delete?id=${job.id}" /> Delete </a>
+												<div>
+													<c:out value="${job.recruiter.uname}" />
+												</div>
+												<!-- Job Location and Salary on the next line -->
+												<div>
+													<i class="fas fa-map-marker-alt"></i>
+													<c:out value="${job.location.name}" />
+													<span> | </span>
+													<c:out value="${job.salary}" />
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<div class="items-link items-link2 f-left">
+															<a href="/PBL3/admin-job-repudiate?id=${job.id}"
+																style="background-color: rgb(255, 192, 203);">Repudiate</a>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 										<div class="items-link items-link2 f-right">
 											<a href="/PBL3/admin-job-details?id=${job.id}" />
 											<c:out value="${job.type.name}" />
-											</a> <span><c:out value="${job.postDate}" /></span>
+											</a>
+											<div class="col-md-4">
+												<div class="items-link items-link2 f-left">
+													<a href="/PBL3/admin-job-delete?id=${job.id}"
+														style="background-color: rgb(0, 250, 0);">Authenticate</a>
+												</div>
+											</div>
+											<span><c:out value="${job.postDate}" /></span>
 										</div>
 									</div>
 									<!-- single-job-content end-->

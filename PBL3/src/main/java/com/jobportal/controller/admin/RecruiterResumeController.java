@@ -34,18 +34,22 @@ public class RecruiterResumeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		Recruiters r = rDAO.selectRecruiter(id);
-		RecruitersDetail rd = rdDAO.selectRecruiterDetail(id);
-		Countries c = cDAO.selectDataById(rd.getIdCountry());
-		
-		request.setAttribute("recruiter", r);
-		request.setAttribute("recruiterDetail", rd);
-		request.setAttribute("country", c);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/recruiterResume.jsp");
-		dispatcher.forward(request, response);
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			Recruiters r = rDAO.selectRecruiter(id);
+			RecruitersDetail rd = rdDAO.selectRecruiterDetail(id);
+			Countries c = cDAO.selectDataById(rd.getIdCountry());
+			
+			request.setAttribute("recruiter", r);
+			request.setAttribute("recruiterDetail", rd);
+			request.setAttribute("country", c);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/recruiterResume.jsp");
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			response.sendRedirect("/PBL3/admin-recruiter");
+		}
 	}
 
 }

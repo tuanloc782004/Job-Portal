@@ -1,6 +1,7 @@
 package com.jobportal.servlet.user;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +26,12 @@ public class UsersDetailEditServlet extends HttpServlet {
 	private LocationsDAO lDAO;
 	private CategoriesDAO cDAO;
 
+	public UsersDetailEditServlet() {
+		lDAO = new LocationsDAO();
+		cDAO = new CategoriesDAO();
+		usersDetailDAO = new UsersDetailDAO();
+	}
+	
 	public void init() {
 		usersDetailDAO = new UsersDetailDAO();
 		lDAO = new LocationsDAO();
@@ -35,16 +42,22 @@ public class UsersDetailEditServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		try {
+			List<Locations> la = lDAO.getAll();
+			List<Categories> ca = cDAO.getAll();
+			
+			request.setAttribute("locations", la);
+			request.setAttribute("categories", ca);
+			
 			int id = Integer.parseInt(request.getParameter("id"));
 			UsersDetail existingUser = usersDetailDAO.selectUserDetail(id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/user/userDetailForm.jsp");
 			request.setAttribute("userDetail", existingUser);
 			
 			Locations l = lDAO.selectDataById(existingUser.getIdLocation());
-			request.setAttribute("location", l);
+			request.setAttribute("locationS", l);
 			
 			Categories c = cDAO.selectDataById(existingUser.getIdCategory());
-			request.setAttribute("category", c);
+			request.setAttribute("categoryS", c);
 			
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

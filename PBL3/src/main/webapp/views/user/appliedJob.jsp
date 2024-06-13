@@ -136,12 +136,16 @@
 												<h4>
 													<c:out value="${job.category.name}" />
 												</h4>
-												<ul>
-													<li><c:out value="${job.recruiter.uname}" /></li>
-													<li><i class="fas fa-map-marker-alt"></i> <c:out
-															value="${job.location.name}" /></li>
-													<li><c:out value="${job.salary}" /></li>
-												</ul>
+												<div>
+													<c:out value="${job.recruiter.uname}" />
+												</div>
+												<!-- Job Location and Salary on the next line -->
+												<div>
+													<i class="fas fa-map-marker-alt"></i>
+													<c:out value="${job.location.name}" />
+													<span> | </span>
+													<c:out value="${job.salary}" />
+												</div>
 												<div class="row">
 													<div class="col-md-4">
 														<div class="items-link items-link2 f-left">
@@ -154,8 +158,8 @@
 										<div class="items-link items-link2 f-right">
 											<a href="/PBL3/user-job-details?id=${job.id}" />
 											<c:out value="${job.type.name}" />
-											</a> 
-											<c:if test="${job.confirmation.id == 2}">
+											</a>
+											<c:if test="${job.confirmation.id == 3}">
 												<div class="col-md-4">
 													<div class="items-link items-link2 f-left">
 														<a href="#" style="background-color: rgb(255, 192, 203);"><c:out
@@ -163,7 +167,7 @@
 													</div>
 												</div>
 											</c:if>
-											<c:if test="${job.confirmation.id == 1}">
+											<c:if test="${job.confirmation.id == 2}">
 												<div class="col-md-4">
 													<div class="items-link items-link2 f-left">
 														<a href="#" style="background-color: rgb(0, 250, 0);"><c:out
@@ -171,7 +175,7 @@
 													</div>
 												</div>
 											</c:if>
-											<c:if test="${job.confirmation.id == 3}">
+											<c:if test="${job.confirmation.id == 1}">
 												<div class="col-md-4">
 													<div class="items-link items-link2 f-left">
 														<a href="#" style="background-color: rgb(255, 255, 0);"><c:out

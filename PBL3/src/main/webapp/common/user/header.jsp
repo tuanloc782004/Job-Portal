@@ -8,7 +8,7 @@
 						<!-- Logo -->
 						<div class="logo">
 							<a href="/PBL3/trang-chu"><img
-								src="<c:url value = '/assets/img/logo/logo.png'/>" alt="" /></a>
+								src="<c:url value = '/assets/img/logo/logo1.png'/>" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-lg-9 col-md-9">

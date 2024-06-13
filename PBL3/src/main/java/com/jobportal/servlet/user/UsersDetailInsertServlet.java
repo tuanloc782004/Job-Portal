@@ -41,22 +41,22 @@ public class UsersDetailInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String category = request.getParameter("category");
-			String location = request.getParameter("location");
+			String category = request.getParameter("categoryS");
+			String location = request.getParameter("locationS");
 			String workExperience = request.getParameter("workExperience");
 			String education = request.getParameter("education");
 			String professionalSkills = request.getParameter("professionalSkills");
 			String img = request.getParameter("img");
-			
-			HttpSession session = request.getSession();
-			Users user = (Users) session.getAttribute("user");
-			int id = user.getId();
 			
 			Locations l = lDAO.selectDataByName(location);
 			int idLocation = l.getId();
 			
 			Categories c = cDAO.selectDataByName(category);
 			int idCategory = c.getId();
+			
+			HttpSession session = request.getSession();
+			Users user = (Users) session.getAttribute("user");
+			int id =user.getId();
 			
 			UsersDetail newU = new UsersDetail(id, idCategory, idLocation, workExperience, education, professionalSkills, img);
 			userDetailDAO.insertUser(newU);

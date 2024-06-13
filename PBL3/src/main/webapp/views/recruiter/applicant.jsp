@@ -22,7 +22,7 @@
 				<input type="hidden" name="id" value="${job.id}">
 				<div class="col-auto">
 					<input type="text" class="form-control" id="autoSizingInput"
-						name="key" placeholder="Enter Keyword" value="${key}">
+						name="key" placeholder="Enter Keyword" value="${param.key}">
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary"
@@ -53,11 +53,17 @@
 
 						<tr data-iduser=${user.id}>
 							<td><c:if
-									test="${user.confirmation.id == 1 || user.confirmation.id == 2}">
-									<div class="text-center">
+									test="${user.confirmation.id == 2}">
+									<div class="text-center" style="background-color: rgb(0, 250, 0);">
 										<c:out value="${user.confirmation.name }" />
 									</div>
-								</c:if> <c:if test="${user.confirmation.id == 3}">
+								</c:if>
+								<c:if
+									test="${user.confirmation.id == 3}">
+									<div class="text-center" style="background-color: rgb(255, 192, 203);">
+										<c:out value="${user.confirmation.name }" />
+									</div>
+								</c:if> <c:if test="${user.confirmation.id == 1}">
 									<div class="col-auto">
 										<select name="cofirmationS" class="confirmationSelect">
 											<c:forEach var="confirmation" items="${confirmations}">

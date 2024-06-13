@@ -13,7 +13,6 @@ public class Jobs {
     private String requirement;
     private int vacancy;
     private LocalDateTime postDate;
-    private int idPayment;
     private Recruiters recruiter;
     private Categories category;
     private Locations location;
@@ -23,7 +22,7 @@ public class Jobs {
     private Applications application;
     
     public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description,
-			String requirement, int vacancy, LocalDateTime postDate, int idPayment, Recruiters recruiter,
+			String requirement, int vacancy, LocalDateTime postDate, Recruiters recruiter,
 			Categories category, Locations location, Types type, RecruitersDetail recruiterDetail,
 			Applications application) {
 		super();
@@ -37,7 +36,6 @@ public class Jobs {
 		this.requirement = requirement;
 		this.vacancy = vacancy;
 		this.postDate = postDate;
-		this.idPayment = idPayment;
 		this.recruiter = recruiter;
 		this.category = category;
 		this.location = location;
@@ -67,47 +65,6 @@ public class Jobs {
 	}
 
 	public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description,
-			String requirement, int vacancy, int idPayment) {
-		super();
-		this.id = id;
-		this.idRecruiter = idRecruiter;
-		this.idCategory = idCategory;
-		this.idLocation = idLocation;
-		this.idType = idType;
-		this.salary = salary;
-		this.description = description;
-		this.requirement = requirement;
-		this.vacancy = vacancy;
-		this.idPayment = idPayment;
-	}
-
-    public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description,
-			String requirement, int vacancy, LocalDateTime postDate, int idPayment, Recruiters recruiter,
-			Categories category, Locations location, Types type, RecruitersDetail recruiterDetail,
-			Confirmations confirmations) {
-		super();
-		this.id = id;
-		this.idRecruiter = idRecruiter;
-		this.idCategory = idCategory;
-		this.idLocation = idLocation;
-		this.idType = idType;
-		this.salary = salary;
-		this.description = description;
-		this.requirement = requirement;
-		this.vacancy = vacancy;
-		this.postDate = postDate;
-		this.idPayment = idPayment;
-		this.recruiter = recruiter;
-		this.category = category;
-		this.location = location;
-		this.type = type;
-		this.recruiterDetail = recruiterDetail;
-		this.confirmation = confirmations;
-	}
-
-
-
-	public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description,
 			String requirement, int vacancy) {
 		super();
 		this.id = id;
@@ -121,7 +78,28 @@ public class Jobs {
 		this.vacancy = vacancy;
 	}
 
-
+    public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description,
+			String requirement, int vacancy, LocalDateTime postDate, Recruiters recruiter,
+			Categories category, Locations location, Types type, RecruitersDetail recruiterDetail,
+			Confirmations confirmations) {
+		super();
+		this.id = id;
+		this.idRecruiter = idRecruiter;
+		this.idCategory = idCategory;
+		this.idLocation = idLocation;
+		this.idType = idType;
+		this.salary = salary;
+		this.description = description;
+		this.requirement = requirement;
+		this.vacancy = vacancy;
+		this.postDate = postDate;
+		this.recruiter = recruiter;
+		this.category = category;
+		this.location = location;
+		this.type = type;
+		this.recruiterDetail = recruiterDetail;
+		this.confirmation = confirmations;
+	}
 
 	public Jobs(int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description,
 			String requirement, int vacancy, Recruiters recruiter, Categories category, Locations location, Types type,
@@ -202,7 +180,7 @@ public class Jobs {
 	}
 
 	// Constructor with all fields including id
-    public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description, String requirement, int vacancy, LocalDateTime postDate, int idPayment) {
+    public Jobs(int id, int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description, String requirement, int vacancy, LocalDateTime postDate) {
         super();
         this.id = id;
         this.idRecruiter = idRecruiter;
@@ -214,11 +192,10 @@ public class Jobs {
         this.requirement = requirement;
         this.vacancy = vacancy;
         this.postDate = postDate;
-        this.idPayment = idPayment;
     }
 
     // Constructor without id
-    public Jobs(int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description, String requirement, int vacancy, LocalDateTime postDate, int idPayment) {
+    public Jobs(int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description, String requirement, int vacancy, LocalDateTime postDate) {
         super();
         this.idRecruiter = idRecruiter;
         this.idCategory = idCategory;
@@ -229,21 +206,6 @@ public class Jobs {
         this.requirement = requirement;
         this.vacancy = vacancy;
         this.postDate = postDate;
-        this.idPayment = idPayment;
-    }
-
-    // Constructor without id and postDate
-    public Jobs(int idRecruiter, int idCategory, int idLocation, int idType, String salary, String description, String requirement, int vacancy, int idPayment) {
-        super();
-        this.idRecruiter = idRecruiter;
-        this.idCategory = idCategory;
-        this.idLocation = idLocation;
-        this.idType = idType;
-        this.salary = salary;
-        this.description = description;
-        this.requirement = requirement;
-        this.vacancy = vacancy;
-        this.idPayment = idPayment;
     }
 
     // Constructor without id, postDate and idPayment
@@ -338,13 +300,5 @@ public class Jobs {
 
     public void setPostDate(LocalDateTime postDate) {
         this.postDate = postDate;
-    }
-
-    public int getIdPayment() {
-        return idPayment;
-    }
-
-    public void setIdPayment(int idPayment) {
-        this.idPayment = idPayment;
     }
 }

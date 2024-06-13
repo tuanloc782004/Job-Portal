@@ -35,7 +35,7 @@ public class JobsDelete extends HttpServlet {
 		
 		try {
 			int id = Integer.parseInt(request.getParameter("id"));
-			jDAO.deleteDataById(id);
+			jDAO.updateDisplay(id);
 			response.sendRedirect(request.getContextPath() + "/admin-job");
 		} catch (Exception e) {
 			e.printStackTrace();

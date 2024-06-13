@@ -21,7 +21,7 @@
 	<main> <!-- Hero Area Start--> <!-- Hero Area End --> <!-- Job List Area Start -->
 	<div class="job-listing-area pt-120 pb-120">
 		<div class="container">
-			<h3 class= "text-center">Find Jobs</h3>
+			<h3 class="text-center">Find Jobs</h3>
 			<hr>
 			<div class="row">
 				<!-- Left content -->
@@ -151,12 +151,16 @@
 											<h4>
 												<c:out value="${job.category.name}" />
 											</h4>
-											<ul>
-												<li><c:out value="${job.recruiter.uname}" /></li>
-												<li><i class="fas fa-map-marker-alt"></i> <c:out
-														value="${job.location.name}" /></li>
-												<li><c:out value="${job.salary}" /></li>
-											</ul>
+											<div>
+												<c:out value="${job.recruiter.uname}" />
+											</div>
+											<!-- Job Location and Salary on the next line -->
+											<div>
+												<i class="fas fa-map-marker-alt"></i>
+												<c:out value="${job.location.name}" />
+												<span> | </span>
+												<c:out value="${job.salary}" />
+											</div>
 										</div>
 									</div>
 									<div class="items-link items-link2 f-right">
@@ -233,13 +237,13 @@
 								<c:if test="${page < totalPage}">
 									<c:if test="${sessionScope.user != null}">
 										<li class="page-item"><a class="page-link"
-										href="/PBL3/user-job?locationS=${param.locationS}&typeS=${param.typeS}&categoryS=${param.categoryS}&page=${page + 1}">Next</a>
-									</li>
+											href="/PBL3/user-job?locationS=${param.locationS}&typeS=${param.typeS}&categoryS=${param.categoryS}&page=${page + 1}">Next</a>
+										</li>
 									</c:if>
 									<c:if test="${sessionScope.user == null}">
 										<li class="page-item"><a class="page-link"
-										href="/PBL3/job-listing?locationS=${param.locationS}&typeS=${param.typeS}&categoryS=${param.categoryS}&page=${page + 1}">Next</a>
-									</li>
+											href="/PBL3/job-listing?locationS=${param.locationS}&typeS=${param.typeS}&categoryS=${param.categoryS}&page=${page + 1}">Next</a>
+										</li>
 									</c:if>
 								</c:if>
 							</ul>

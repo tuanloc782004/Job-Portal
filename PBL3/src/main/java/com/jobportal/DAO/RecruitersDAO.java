@@ -24,6 +24,15 @@ public class RecruitersDAO {
 	private static final String UPDATE_USERS_SQL = "update recruiters set uname = ?, upwd = ?, uemail = ?, umobile = ? where id = ?;";
 	private static final String GET_USER_BY_EMAIL = "SELECT id, uname, upwd, umobile FROM recruiters WHERE uemail = ?";
 	
+	private static final String GET_DATA_ADMIN = "select * from recruiters"
+			+ " LIMIT ?" + " OFFSET ?";
+	private static final String GET_DATA_BY_KEY_ADMIN = "select * from recruiters " + "WHERE uname LIKE ? " + "AND uemail LIKE ? "
+			 + "LIMIT ? OFFSET ?";
+	private static final String COUNT_DATA_ADMIN = "select count(*) as total from recruiters";
+	private static final String COUNT_DATA_BY_KEY_ADMIN = "SELECT COUNT(*) AS total from recruiters "
+			+ "WHERE uname LIKE ? AND uemail LIKE ?";
+	private static final String COUNT = "select count(*) AS total from recruiters";
+	
 	protected Connection getConnection() {
 		Connection connection = null;
 		try {
@@ -35,6 +44,121 @@ public class RecruitersDAO {
 			e.printStackTrace();
 		}
 		return connection;
+	}
+	
+	public int count() {
+		int total = 0;
+
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(COUNT)) {
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					total = resultSet.getInt("total");
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return total;
+	}
+	
+	public int countDataAdmin() {
+		int total = 0;
+
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(COUNT_DATA_ADMIN)) {
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					total = resultSet.getInt("total");
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return total;
+	}
+
+	public int countDataByKeyAdmin(String key) {
+		int total = 0;
+
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(COUNT_DATA_BY_KEY_ADMIN)) {
+
+			preparedStatement.setString(1, "%" + key + "%");
+			preparedStatement.setString(2, "%" + key + "%");
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					total = resultSet.getInt("total");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return total;
+	}
+
+	public List<Recruiters> getDataAdmin(int limit, int page) {
+		List<Recruiters> users = new ArrayList<>();
+		int offset = (page - 1) * limit;
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(GET_DATA_ADMIN);) {
+			
+			preparedStatement.setInt(1, limit);
+			preparedStatement.setInt(2, offset);
+			System.out.println(preparedStatement);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String uname = rs.getString("uname");
+				String uemail = rs.getString("uemail");
+				String upwd = rs.getString("upwd");
+				String umobile = rs.getString("umobile");
+
+				users.add(new Recruiters(id, uname, upwd, uemail, umobile));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public List<Recruiters> getDataByKeyAdmin(String key, int limit, int page) {
+		List<Recruiters> users = new ArrayList<>();
+		int offset = (page - 1) * limit;
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(GET_DATA_BY_KEY_ADMIN);) {
+
+			preparedStatement.setString(1, "%" + key + "%");
+			preparedStatement.setString(2, "%" + key + "%");
+			preparedStatement.setInt(3, limit);
+			preparedStatement.setInt(4, offset);
+			System.out.println(preparedStatement);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String uname = rs.getString("uname");
+				String uemail = rs.getString("uemail");
+				String upwd = rs.getString("upwd");
+				String umobile = rs.getString("umobile");
+
+				users.add(new Recruiters(id, uname, upwd, uemail, umobile));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 	
 	public Recruiters getUserByEmail(String email) throws SQLException {

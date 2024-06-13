@@ -41,8 +41,8 @@ public class UsersDetailUpdateServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			int idUser = Integer.parseInt(request.getParameter("id"));
-			String category = request.getParameter("category");
-			String location = request.getParameter("location");
+			String category = request.getParameter("categoryS");
+			String location = request.getParameter("locationS");
 			String workExperience = request.getParameter("workExperience");
 			String education = request.getParameter("education");
 			String professionalSkills = request.getParameter("professionalSkills");
